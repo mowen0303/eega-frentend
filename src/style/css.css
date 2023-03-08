@@ -1,0 +1,20 @@
+.table_1_wrap { width: 100%; overflow-x:auto;}
+.table_1 {width: 100%; background-color: #fafafa; border-radius: 10px; overflow: hidden; color: #6a6a6a;}
+.table_1,.table_1 th,.table_1 td {font-size: 14px; border-collapse: collapse; text-align: left; white-space: nowrap;padding:0.5em 1em}
+.table_1 thead {background:linear-gradient(195deg, #49a3f1, #1A73E8);}
+.table_1 th {color:#fff; padding-top:1.5em;; padding-bottom: 1.5em;}
+.table_1 tr:nth-child(even) td {background-color: rgba(26,115,232,0.1);}
+
+.label {font-size: 12px; line-height: 12px; display: inline-block; background: #53e69d; padding:4px 10px; border-radius: 100px; color: #fff; font-weight: bold;}
+
+.a1 {color:#1A73E8; cursor: pointer;}
+.a2 {cursor: pointer;}
+
+.enrollBtnContainer {margin-top: 1em;}
+.enrollBtnWrap { position:relative; margin-top: 4em; font-size: 0.8em;}
+.enrollBtnGroupTitle { position: absolute; top:-2em; left:0.5em}
+.enrollBtnWrap {display: flex; }
+.enrollBtn {flex:1; color: #fff; text-align: center; margin:0 0.2em; height: 40px; line-height: 40px; cursor: pointer; transition: 0.5s; font-size: 0.9em; background: linear-gradient(195deg, #49a3f1, #1A73E8); border-radius: 9px;}
+.occupy {background: linear-gradient(195deg, #EC407A, #D81B60);}
+.enrollBtn:hover {background: linear-gradient(195deg, #0d8eff, #006eff); transition-duration: 1s;}
+.occupy:hover {background: linear-gradient(195deg, #EC407A, #D81B60);}
