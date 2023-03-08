@@ -136,7 +136,7 @@ function HomePage() {
         </MKBox>
         <Testimonials />
       </Card>
-      <MKBox pt={{ xs: 2, lg: 3 }} pb={3}>
+      <MKBox p={{ xs: 2, md: 4 }}>
         <SimpleFooter />
       </MKBox>
     </>

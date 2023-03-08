@@ -3,11 +3,11 @@ import Card from "@mui/material/Card";
 import MKBox from "components/MKBox";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import Profile from "pages/Blogs/Author/sections/Profile";
-import Footer from "pages/Blogs/Author/sections/Footer";
 import routes from "routes";
 import bgImage from "assets/images/city-profile.jpg";
 import { getUser } from "redux/actions/userAction";
 import { connect } from "react-redux";
+import SimpleFooter from "examples/Footers/SimpleFooter";
 
 
 const mapStateToProps = (state) => ({
@@ -72,7 +72,9 @@ class Author extends Component {
           >
             <Profile />
           </Card>
-          <Footer />
+          <MKBox p={{ xs: 2, md: 4 }}>
+            <SimpleFooter />
+          </MKBox>
         </MKBox>
       </>
     );

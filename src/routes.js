@@ -1,7 +1,6 @@
 import Icon from "@mui/material/Icon";
 
 // Pages
-import SignInBasicPage from "layouts/authentication/sign-in/basic";
 import HomePage from "pages/home";
 import EventListPage from "pages/event";
 import ScoreListPage from "pages/score";
@@ -9,6 +8,7 @@ import RankPage from "pages/rank";
 import MemberPage from "pages/member";
 import SponsorPage from "pages/sponsor";
 import PicPage from "pages/pic";
+import MePage from "pages/me";
 
 const routes = [
   {
@@ -57,7 +57,7 @@ const routes = [
     name: "我的账号",
     icon: <Icon>account_box</Icon>,
     route: "/me",
-    component: <SignInBasicPage />,
+    component: <MePage />,
   },
 ];
 

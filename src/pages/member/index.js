@@ -44,7 +44,7 @@ function MemberPage() {
         action={false}
         sticky
       />
-      <MKBox component="section" pt={20} pb={12}>
+      <MKBox component="section" pt={20} pb={3}>
         <Container>
           <Grid container justifyContent="center">
             <Grid item xs={12}>
@@ -85,7 +85,7 @@ function MemberPage() {
                               <tr key={x.user_id}>
                                 <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="s" shadow="xl" /></td>
                                 <td>{x.user_first_name} {x.user_last_name}</td>
-                                <td>{x.user_category_title}</td>
+                                <td>{Helper.renderUserType(x.user_category_id,x.user_category_title)}</td>
                               </tr>
                             )
                           })
@@ -99,7 +99,7 @@ function MemberPage() {
           </Grid>
         </Container>
       </MKBox>
-      <MKBox pt={{ xs: 0, lg: 3 }} pb={3}>
+      <MKBox p={{ xs: 2, md: 4 }}>
         <SimpleFooter />
       </MKBox>
     </>

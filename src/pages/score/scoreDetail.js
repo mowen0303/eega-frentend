@@ -13,6 +13,7 @@ import Helper from "helper";
 import MKAvatar from "components/MKAvatar";
 import { useNavigate, useParams } from "react-router-dom";
 
+
 function ScoreDetailPage() {
   const [noAuth, setNoAuth] = useState(false);
   const [scoreArr, setScoreArr] = useState(null);
@@ -67,6 +68,8 @@ function ScoreDetailPage() {
     getData(orderBy, sortBy);
   }, [])
 
+  
+
 
   return (
     <>
@@ -75,7 +78,7 @@ function ScoreDetailPage() {
         action={false}
         sticky
       />
-      <MKBox component="section" pt={20} pb={12}>
+      <MKBox component="section" pt={20} pb={3}>
         <Container>
           <Grid container justifyContent="center">
             <Grid item xs={12}>
@@ -90,10 +93,10 @@ function ScoreDetailPage() {
                   mx={2}
                 >
                   <MKTypography variant="h3" color="white">
-                    差点排名
+                    比赛成绩 - {event.event_title}
                   </MKTypography>
                   <MKTypography variant="body2" color="white" opacity={0.8}>
-                    最高统计最近20场比赛成绩，再取其中一半最好成绩进行计算。
+                    至少累计5场比赛才会有差点指数和净杆数据
                   </MKTypography>
                 </MKBox>
                 <MKBox p={{ xs: 3, md: 6 }}>
@@ -107,7 +110,8 @@ function ScoreDetailPage() {
                           <th style={{width:'150px'}}>排名</th>
                           <th>头像</th>
                           <th>姓名</th>
-                          <th>T (S/R/P)</th>
+                          <th>T</th>
+                          <th>(S/R/P)</th>
                           <th><div className="a2" onClick={() => getData("participant_score", sortBy == "asc" ? "desc" : "asc")}>毛杆 <span>{getIcon("participant_score")}</span></div></th>
                           <th>差点微分</th>
                           <th>差点指数</th>
@@ -122,7 +126,8 @@ function ScoreDetailPage() {
                                 <td>{rankIndex++}</td>
                                 <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="s" shadow="xl" /></td>
                                 <td>{x.user_first_name} {x.user_last_name}</td>
-                                <td>{x.participant_t} ({x.ts}/{x.tr}/{x.tp})</td>
+                                <td>{Helper.renderT(x.participant_t)}</td>
+                                <td>({x.ts}/{x.tr}/{x.tp})</td>
                                 <td>{x.participant_score}</td>
                                 <td>{x.participant_handicap_differential}</td>
                                 <td><a className="a1" onClick={() => navigate(`/score/history/${x.participant_id}`)}>{x.participant_handicap_index}</a></td>
@@ -141,7 +146,7 @@ function ScoreDetailPage() {
           </Grid>
         </Container>
       </MKBox>
-      <MKBox pt={{ xs: 0, lg: 3 }} pb={3}>
+      <MKBox p={{ xs: 2, md: 4 }}>
         <SimpleFooter />
       </MKBox>
     </>

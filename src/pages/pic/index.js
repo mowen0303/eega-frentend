@@ -42,7 +42,7 @@ function PicPage() {
         action={false}
         sticky
       />
-      <MKBox component="section" pt={20} pb={12}>
+      <MKBox component="section" pt={20} pb={3}>
         <Container>
           <Grid container justifyContent="center">
             <Grid item xs={12}>
@@ -92,7 +92,7 @@ function PicPage() {
 
         </Container>
       </MKBox>
-      <MKBox pt={{ xs: 0, lg: 3 }} pb={3}>
+      <MKBox p={{ xs: 2, md: 4 }}>
         <SimpleFooter />
       </MKBox>
     </>

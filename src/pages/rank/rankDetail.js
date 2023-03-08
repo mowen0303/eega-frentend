@@ -10,7 +10,6 @@ import 'style/css.css'
 import routes from "routes";
 import axios from "axios";
 import Helper from "helper";
-import MKAvatar from "components/MKAvatar";
 import { useParams } from 'react-router';
 
 function RankDetailPage(props) {
@@ -48,7 +47,7 @@ function RankDetailPage(props) {
         action={false}
         sticky
       />
-      <MKBox component="section" pt={20} pb={12}>
+      <MKBox component="section" pt={20} pb={3}>
         <Container>
           <Grid container justifyContent="center">
             <Grid item xs={12}>
@@ -79,7 +78,8 @@ function RankDetailPage(props) {
                         <tr>
                           <th>日期</th>
                           <th>球场</th>
-                          <th>T (S/R/P)</th>
+                          <th>T</th>
+                          <th>(S/R/P)</th>
                           <th>毛杆</th>
                           <th>差点微分</th>
                           <th>状态</th>
@@ -92,7 +92,8 @@ function RankDetailPage(props) {
                               <tr key={rankIndex}>
                                 <td>{x.event_date}</td>
                                 <td>{x.courseName}</td>
-                                <td>{x.participant_t} ({x.ts} / {x.tr} / {x.tp})</td>
+                                <td>{Helper.renderT(x.participant_t)}</td>
+                                <td>({x.ts} / {x.tr} / {x.tp})</td>
                                 <td>{x.participant_score}</td>
                                 <td>{x.participant_handicap_differential}</td>
                                 <td>{x.rank_history_is_used_for_calculate == 1 && <div dangerouslySetInnerHTML={{ __html: `<span class="label label-green">有效</span>` }} />}</td>
@@ -109,7 +110,7 @@ function RankDetailPage(props) {
           </Grid>
         </Container>
       </MKBox>
-      <MKBox pt={{ xs: 0, lg: 3 }} pb={3}>
+      <MKBox p={{ xs: 2, md: 4 }}>
         <SimpleFooter />
       </MKBox>
     </>

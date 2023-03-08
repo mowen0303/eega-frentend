@@ -25,7 +25,7 @@ function ScoreListPage(props) {
         action={false}
         sticky
       />
-      <MKBox component="section" pt={20} pb={12}>
+      <MKBox component="section" pt={20} pb={3}>
         <Container>
           <Grid container justifyContent="center">
             <Grid item xs={12}>
@@ -47,7 +47,7 @@ function ScoreListPage(props) {
                   </MKTypography>
                 </MKBox>
                 <MKBox p={{ xs: 3, md: 6 }} pt={{ xs: 0, md: 2 }}>
-                  <Grid container spacing={2} sx={{ mt: 0 }}>
+                  <Grid container spacing={3} sx={{ mt: 0 }}>
                     {props.eventList && props.eventList.data && props.eventList.data.length > 0 && props.eventList.data.map(x => {
                       return (
                         <Grid item xs={12} md={6} lg={4} key={x.event_id}>
@@ -75,7 +75,7 @@ function ScoreListPage(props) {
 
         </Container>
       </MKBox>
-      <MKBox pt={{ xs: 0, lg: 3 }} pb={3}>
+      <MKBox p={{ xs: 2, md: 4 }}>
         <SimpleFooter />
       </MKBox>
     </>

@@ -25,7 +25,7 @@ function EventListPage(props) {
         action={false}
         sticky
       />
-      <MKBox component="section" pt={20} pb={12}>
+      <MKBox component="section" pt={20} pb={3}>
         <Container>
           <Grid container justifyContent="center">
             <Grid item xs={12}>
@@ -50,7 +50,7 @@ function EventListPage(props) {
                   <Grid container spacing={3} sx={{ mt: 0 }}>
                     {props.eventList && props.eventList.data && props.eventList.data.length > 0 && props.eventList.data.map(x => {
                       return (
-                        <Grid item xs={12} md={6} lg={4}>
+                        <Grid item xs={12} md={6} lg={4} key={x.event_id}>
                           <MKBox mt={1}>
                             <ListCell
                               title={x.event_title}
@@ -75,7 +75,7 @@ function EventListPage(props) {
 
         </Container>
       </MKBox>
-      <MKBox pt={{ xs: 0, lg: 3 }} pb={3}>
+      <MKBox p={{ xs: 2, md: 4 }}>
         <SimpleFooter />
       </MKBox>
     </>
