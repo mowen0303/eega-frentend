@@ -9,17 +9,39 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import SimpleFooter from "examples/Footers/SimpleFooter";
 import Testimonials from "pages/LandingPages/Coworking/sections/Testimonials";
 import SimpleInfoCard from "examples/Cards/InfoCards/SimpleInfoCard";
+import axios from "axios";
 
 // Routes
 import routes from "routes";
 import { useNavigate } from "react-router-dom";
+import Helper from "helper";
 
 // Images
 // import bgImage from "assets/images/bg-coworking.jpeg";
 import bgImage from "assets/images/bg-index2.jpg";
+import { useEffect, useState } from "react";
 
 function HomePage() {
   const navigate = useNavigate();
+
+  const [announceArr, setAnnounceArr] = useState([
+    {announce_content:"..."},
+    {announce_content:"..."},
+  ]);
+
+  useEffect(async () => {
+    try {
+      const url = `${Helper.host}/restAPI/announceController.php?action=getAnnounceList`;
+      const res = await axios.get(url, Helper.hostHeaders);
+      if (res.data.result) {
+        setAnnounceArr(res.data.result)
+      }
+    } catch (e) {
+
+    }
+  }, []);
+
+
   return (
     <>
       <DefaultNavbar
@@ -103,7 +125,7 @@ function HomePage() {
                   <SimpleInfoCard
                     icon="campaign"
                     title="活动通知"
-                    description="请再次确认此部分功能是否需要做，需要做的话，本部分功能需要额外计算定制费用。"
+                    description={announceArr[0].announce_content}
                   />
                   {/* <SimpleInfoCard
                     icon="insights"
@@ -122,7 +144,7 @@ function HomePage() {
                   <SimpleInfoCard
                     icon="contactless"
                     title="鹰会喜报"
-                    description="请再次确认此部分功能是否需要做，需要做的话，本部分功能需要额外计算定制费用。"
+                    description={announceArr[1].announce_content}
                   />
                   {/* <SimpleInfoCard
                     icon="sentiment_satisfied"

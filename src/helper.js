@@ -27,16 +27,15 @@ export default class Helper {
   }
 
   static renderUserType = (userCategoryId,title) => {
-    console.log(userCategoryId)
     switch(userCategoryId){
       case 1:
         return <MKBadge badgeContent={title} color="error" container />
       case 2:
         return <MKBadge badgeContent={title} color="success" container />
       case 3:
-        return <MKBadge badgeContent={title} color="light" container />
-      case 14:
         return <MKBadge badgeContent={title} color="dark" container />
+      case 14:
+        return <MKBadge badgeContent={title} color="light" container />
       case 15:
         return <MKBadge badgeContent={title} color="warning" container />
       default:

@@ -52,13 +52,7 @@ const routes = [
     icon: <Icon>view_day</Icon>,
     route: "/pic",
     component: <PicPage />,
-  },
-  {
-    name: "我的账号",
-    icon: <Icon>account_box</Icon>,
-    route: "/me",
-    component: <MePage />,
-  },
+  }
 ];
 
 export default routes;

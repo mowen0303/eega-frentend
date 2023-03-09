@@ -15,6 +15,7 @@ import ScoreDetailPage from "pages/score/scoreDetail";
 import ScoreHistoryPage from "pages/score/scoreHistory";
 import EventDetailPage from "pages/event/eventDetail";
 import PicDetailPage from "pages/pic/picDetail";
+import MePage from "pages/me";
 
 // Material Kit 2 PRO React routes
 import routes from "routes";
@@ -57,6 +58,7 @@ function App(props) {
                 <Route exact path="/score/detail/:eventId" element={<ScoreDetailPage />} />
                 <Route exact path="/score/history/:participantId" element={<ScoreHistoryPage />} />
                 <Route exact path="/pic/detail/:eventId" element={<PicDetailPage />} />
+                <Route exact path="/me" element={<MePage />} />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </ThemeProvider>

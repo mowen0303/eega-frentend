@@ -115,7 +115,7 @@ function RankPage() {
                                   <td>{rankIndex++}</td>
                                   <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="s" shadow="xl" /></td>
                                   <td>{x.user_first_name} {x.user_last_name}</td>
-                                  <td>{x.user_category_title}</td>
+                                  <td>{Helper.renderUserType(x.user_category_id, x.user_category_title)}</td>
                                   <td><a className="a1" onClick={() => navigate(`/rank/detail/${x.user_id}`)}>{x.rank_handicap_index}</a></td>
                                   <td>{x.rank_history_count}</td>
                                 </tr>

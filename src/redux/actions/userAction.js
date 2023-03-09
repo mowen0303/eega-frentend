@@ -95,7 +95,7 @@ export const getUser = (userId) => async dispatch => {
     }
 };
 
-export const updateMyProfile = (data) => async dispatch => {
+export const updateMyProfile = (data,callback) => async dispatch => {
     try {
         console.log(data.user_avatar);
         let formData = new FormData();
@@ -121,6 +121,7 @@ export const updateMyProfile = (data) => async dispatch => {
                 error:null,
                 data: res.data.result
             });
+            alert('信息更新成功');
         }else{
             throw new Error(res.data.message)
         }

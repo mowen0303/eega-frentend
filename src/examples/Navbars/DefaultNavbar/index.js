@@ -1,46 +1,21 @@
-/* eslint-disable no-param-reassign */
-/**
-=========================================================
-* Material Kit 2 PRO React - v2.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect } from "react";
-
-// react-router components
 import { Link } from "react-router-dom";
-
-// prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
-
-// @mui material components
 import Container from "@mui/material/Container";
 import Icon from "@mui/material/Icon";
-
-// Material Kit 2 PRO React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
-
-// Material Kit 2 PRO React examples
 import DefaultNavbarDropdown from "examples/Navbars/DefaultNavbar/DefaultNavbarDropdown";
 import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMobile";
-
-// Material Kit 2 PRO React base styles
 import breakpoints from "assets/theme/base/breakpoints";
+import { connect } from 'react-redux';
 
-function DefaultNavbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
+function DefaultNavbar(props) {
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
+
+  const {brand, routes, transparent, light, action, sticky, relative, center } = props;
 
   const openMobileNavbar = () => setMobileNavbar(!mobileNavbar);
 
@@ -123,6 +98,13 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             mr={center ? "auto" : 0}
           >
             {renderNavbarItems}
+            <DefaultNavbarDropdown
+              key={1}
+              name={props.auth.data.cc_id ? `${props.auth.data.user_first_name} ${props.auth.data.user_last_name}` : "登录"}
+              icon={<Icon>account_box</Icon>}
+              route={"/me"}
+              light={light}
+            />
           </MKBox>
           <MKBox ml={{ xs: "auto", lg: 0 }}>
             {action &&
@@ -226,4 +208,8 @@ DefaultNavbar.propTypes = {
   center: PropTypes.bool,
 };
 
-export default DefaultNavbar;
+const mapStateToProps = (state) => ({
+  auth: state.userReducer.auth,
+})
+
+export default connect(mapStateToProps,null)(DefaultNavbar);

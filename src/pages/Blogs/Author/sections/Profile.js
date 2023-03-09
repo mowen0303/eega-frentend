@@ -20,8 +20,6 @@ function Profile(props) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [selectedImage, setSelectedImage] = useState("");
-  const handleChecked = () => setChecked(!checked);
-
   const currentChannelName = props.profile.data;
 
   useEffect(() => {

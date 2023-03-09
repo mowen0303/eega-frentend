@@ -70,7 +70,7 @@ function Testimonials() {
                   鹰会汇聚了多伦多一众知名高尔夫球高手，一级痛并快乐着的鹰友。
                 </MKTypography>
                 <MKTypography variant="button" fontWeight="bold" color="white">
-                  郭大业 -{" "}
+                  郭涛 -{" "}
                   <MKTypography variant="caption" color="white">
                     会长寄语
                   </MKTypography>
