@@ -1,14 +1,13 @@
-// prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
-
-// @mui material components
 import Icon from "@mui/material/Icon";
-
-// Material Kit 2 PRO React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import { useNavigate } from "react-router-dom";
 
-function SimpleInfoCard({ color, icon, title, description, direction }) {
+function SimpleInfoCard({ color, icon, title, description, direction, eventObj }) {
+
+  const navigate = useNavigate();
+
   let alignment = "flex-start";
 
   if (direction === "center") {
@@ -44,6 +43,12 @@ function SimpleInfoCard({ color, icon, title, description, direction }) {
         {title}
       </MKTypography>
       <div dangerouslySetInnerHTML={{__html:description}} style={{fontSize:"0.8em"}}></div>
+      {
+        eventObj &&
+        <MKTypography display="block" variant="body2" mt={1.5} mb={1.5}>
+          <a className="a1" onClick={()=>navigate(`event/detail/${eventObj.event_id}`)}>下一场比赛，将于 {eventObj.event_date} 在 {eventObj.courseName} 举行，比赛人数上限为 {eventObj.event_max_participant} 人。</a>
+        </MKTypography>
+      }
     </MKBox>
   );
 }

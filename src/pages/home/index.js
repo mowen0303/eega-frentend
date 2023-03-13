@@ -29,12 +29,15 @@ function HomePage() {
     { announce_content: "..." },
   ]);
 
+  const [nextEvent,setNextEvent,] = useState(null)
+
   useEffect(async () => {
     try {
-      const url = `${Helper.host}/restAPI/announceController.php?action=getAnnounceList`;
+      const url = `${Helper.host}/restAPI/announceController.php?action=getAnnounceOfHomePage`;
       const res = await axios.get(url, Helper.hostHeaders);
       if (res.data.result) {
-        setAnnounceArr(res.data.result)
+        setAnnounceArr(res.data.result);
+        setNextEvent(res.data.secondResult);
       }
     } catch (e) {
 
@@ -139,6 +142,7 @@ function HomePage() {
                     icon="campaign"
                     title="活动通知"
                     description={announceArr[0].announce_content}
+                    eventObj={nextEvent}
                   />
                   {/* <SimpleInfoCard
                     icon="insights"
