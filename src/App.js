@@ -16,6 +16,7 @@ import ScoreHistoryPage from "pages/score/scoreHistory";
 import EventDetailPage from "pages/event/eventDetail";
 import PicDetailPage from "pages/pic/picDetail";
 import MePage from "pages/me";
+import 'style/css.css'
 
 // Material Kit 2 PRO React routes
 import routes from "routes";

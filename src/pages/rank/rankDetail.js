@@ -22,7 +22,6 @@ function RankDetailPage(props) {
     try {
       const url = `${Helper.host}/restAPI/rankController.php?action=getRankHistory&userId=${userId}`;
       const res = await axios.get(url, Helper.hostHeaders);
-      console.log(res.data.result)
       if (res.data.result) {
         setrankHistoryArr(res.data.result);
         if (res.data.result.length > 0) {

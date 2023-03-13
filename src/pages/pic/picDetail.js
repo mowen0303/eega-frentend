@@ -73,8 +73,8 @@ function PicDetailPage() {
                         您无权查看本页面
                       </MKTypography>
                     </MKBox>
-                    <MKBox p={{ xs: 3, md: 8 }} hidden={noAuth}>
-                      <div dangerouslySetInnerHTML={{__html:event.event_review_content}}></div>
+                    <MKBox p={{ xs: 3, md: 6 }} hidden={noAuth}>
+                      <div className="articleWrap" dangerouslySetInnerHTML={{__html:event.event_review_content}}></div>
                     </MKBox>
                   </Grid>
                 </MKBox>

@@ -22,7 +22,6 @@ function ScoreHistoryPage(props) {
     try {
       const url = `${Helper.host}/restAPI/eventController.php?action=getIndexScoreHistory&participantId=${participantId}`;
       const res = await axios.get(url, Helper.hostHeaders);
-      console.log(res.data.result)
       if (res.data.result) {
         setrankHistoryArr(res.data.result);
         if(res.data.result.length > 0){

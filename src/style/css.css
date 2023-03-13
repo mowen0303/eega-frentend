@@ -4,6 +4,8 @@
 .table_1 thead {background:linear-gradient(195deg, #49a3f1, #1A73E8);}
 .table_1 th {color:#fff; padding-top:1.5em;; padding-bottom: 1.5em;}
 .table_1 tr:nth-child(even) td {background-color: rgba(26,115,232,0.1);}
+.table_1 .my td {background:#D81B60 !important; color: #fff;}
+.table_1 .my td a {color:#fff}
 
 .label {font-size: 12px; line-height: 12px; display: inline-block; background: #53e69d; padding:4px 10px; border-radius: 100px; color: #fff; font-weight: bold;}
 
@@ -14,7 +16,15 @@
 .enrollBtnWrap { position:relative; margin-top: 4em; font-size: 0.8em;}
 .enrollBtnGroupTitle { position: absolute; top:-2em; left:0.5em}
 .enrollBtnWrap {display: flex; }
-.enrollBtn {flex:1; color: #fff; text-align: center; margin:0 0.2em; height: 40px; line-height: 40px; cursor: pointer; transition: 0.5s; font-size: 0.9em; background: linear-gradient(195deg, #49a3f1, #1A73E8); border-radius: 9px;}
+.enrollBtn {width:24%; color: #fff; text-align: center; margin:0 0.2em; height: 40px; line-height: 40px; cursor: pointer; transition: 0.5s; font-size: 0.9em; background: linear-gradient(195deg, #49a3f1, #1A73E8); border-radius: 9px;}
 .occupy {background: linear-gradient(195deg, #EC407A, #D81B60);}
 .enrollBtn:hover {background: linear-gradient(195deg, #0d8eff, #006eff); transition-duration: 1s;}
 .occupy:hover {background: linear-gradient(195deg, #EC407A, #D81B60);}
+
+.listCard {transition: 1s !important;}
+.listCard:hover {background: #eef5fb;}
+
+.articleWrap {font-size: 0.9em;padding:1em;}
+.articleWrap table {width: 100%; overflow: hidden; color: #6a6a6a; border-collapse: collapse;}
+.articleWrap table th,.articleWrap table td { border-collapse: collapse; text-align: left; padding:1em; border:1px solid #e4e4e4}
+.articleWrap tr:hover {background-color: #efefef; transition: 0.5s;}

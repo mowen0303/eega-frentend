@@ -96,11 +96,11 @@ function ScoreDetailPage() {
                     比赛成绩 - {event.event_title}
                   </MKTypography>
                   <MKTypography variant="body2" color="white" opacity={0.8}>
-                    至少累计5场比赛才会有差点指数和净杆数据
+                    累积四场有效成绩后才会有差点指数；第五场起才有净杆成绩。
                   </MKTypography>
                 </MKBox>
                 <MKBox p={{ xs: 3, md: 6 }}>
-                  <MKTypography variant="body2" color="grey" opacity={0.8} hidden={!noAuth}>
+                  <MKTypography variant="body2" color="text" opacity={0.8} hidden={!noAuth}>
                     您无权查看本页面
                   </MKTypography>
                   <div className="table_1_wrap">
@@ -114,7 +114,7 @@ function ScoreDetailPage() {
                           <th>(S/R/P)</th>
                           <th><div className="a2" onClick={() => getData("participant_score", sortBy == "asc" ? "desc" : "asc")}>毛杆 <span>{getIcon("participant_score")}</span></div></th>
                           <th>差点微分</th>
-                          <th>差点指数</th>
+                          <th>历史差点指数<br/><span style={{fontSize:"0.8em"}}>本场成绩不计入</span></th>
                           <th><div className="a2" onClick={() => getData("participant_net_score", sortBy == "asc" ? "desc" : "asc")}>净杆 <span>{getIcon("participant_net_score")}</span></div></th>
                         </tr>
                       </thead>
@@ -122,9 +122,9 @@ function ScoreDetailPage() {
                         {
                           scoreArr && scoreArr.map(x => {
                             return (
-                              <tr key={rankIndex}>
+                              <tr key={rankIndex} className={x.participant_user_id == global.auth.cc_id ? "my" : ""}>
                                 <td>{rankIndex++}</td>
-                                <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="s" shadow="xl" /></td>
+                                <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="md" shadow="xl" /></td>
                                 <td>{x.user_first_name} {x.user_last_name}</td>
                                 <td>{Helper.renderT(x.participant_t)}</td>
                                 <td>({x.ts}/{x.tr}/{x.tp})</td>

@@ -43,9 +43,7 @@ function SimpleInfoCard({ color, icon, title, description, direction }) {
       <MKTypography display="block" variant="5" fontWeight="bold" mt={2.5} mb={1.5}>
         {title}
       </MKTypography>
-      <MKTypography display="block" variant="body2" color="text">
-        <div dangerouslySetInnerHTML={{__html:description}}></div>
-      </MKTypography>
+      <div dangerouslySetInnerHTML={{__html:description}} style={{fontSize:"0.8em"}}></div>
     </MKBox>
   );
 }

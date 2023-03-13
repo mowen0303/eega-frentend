@@ -42,5 +42,22 @@ export default class Helper {
         return title
     }
   }
+
+  static renderEventStatus = (title) => {
+    switch(title){
+      case "已结束":
+        return <MKBadge badgeContent={title} color="light" container />
+      case "今日比赛":
+        return <MKBadge badgeContent={title} color="success" container />
+      case "报名已锁定":
+        return <MKBadge badgeContent={title} color="warning" container />
+      case "开放报名":
+        return <MKBadge badgeContent={title} color="info" container />
+      case "未开放":
+        return <MKBadge badgeContent={title} color="error" container />
+      default:
+        return title
+    }
+  }
   
 }

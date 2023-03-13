@@ -56,11 +56,12 @@ function EventListPage(props) {
                               title={x.event_title}
                               description={`比赛球场：${x.courseName}`}
                               categories={[x.event_date, x.event_type == 'week' ? '周场' : '月场',`${x.event_max_participant}人`]}
+                              status={x.event_join_status}
                               action={{
                                 type: "internal",
                                 route: `/event/detail/${x.event_id}`,
                                 color: "info",
-                                label: "查看比赛详情 / 报名",
+                                label: "查看比赛详情",
                               }}
                             />
                           </MKBox>

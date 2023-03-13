@@ -75,7 +75,6 @@ export const getUser = (userId) => async dispatch => {
     try {
         const url = `${Helper.host}/restAPI/userController.php?action=getMyProfile`;
         const res = await axios.get(url, Helper.hostHeaders);
-        console.log(res.data.result)
         if(res.data.result){
             dispatch({
                 type: USER_GET,
@@ -97,12 +96,13 @@ export const getUser = (userId) => async dispatch => {
 
 export const updateMyProfile = (data,callback) => async dispatch => {
     try {
-        console.log(data.user_avatar);
         let formData = new FormData();
         formData.append("imgFile[]",data.user_avatar);
         formData.append("user_first_name",data.user_first_name);
         formData.append("user_last_name",data.user_last_name);
         formData.append("user_phone",data.user_phone);
+        formData.append("user_month",data.user_month);
+        formData.append("user_day",data.user_day);
         formData.append("user_email",data.user_email);
 
         const url = `${Helper.host}/restAPI/userController.php?action=updateMyProfile`;

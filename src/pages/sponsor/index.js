@@ -60,7 +60,7 @@ function SponsorPage() {
                   </MKTypography>
                 </MKBox>
                 <MKBox p={{ xs: 3, md: 6 }}>
-                  <div dangerouslySetInnerHTML={{__html:content}}></div>
+                  <div className="articleWrap" dangerouslySetInnerHTML={{__html:content}}></div>
                 </MKBox>
               </Card>
             </Grid>

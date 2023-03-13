@@ -20,22 +20,21 @@ function RankPage() {
   const [noAuth, setNoAuth] = useState(false);
   const [rankArr, setRankArr] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
-  
+
   const navigate = useNavigate();
   let rankIndex = 1;
 
-  async function getData(val){
+  async function getData(val) {
     try {
       const url = `${Helper.host}/restAPI/rankController.php?action=getRank&type=${val}`;
       const res = await axios.get(url, Helper.hostHeaders);
-      console.log(res.data.result)
       if (res.data.result) {
         setRankArr(res.data.result);
       } else {
         throw new Error(res.data.message);
       }
     } catch (e) {
-      if (e.response.data.code == 403) {
+      if (e && e.response && e.response.data.code == 403) {
         setNoAuth(true);
       }
       setRankArr(null)
@@ -50,9 +49,6 @@ function RankPage() {
     getData(newValue);
     setActiveTab(newValue);
   }
-
-  
-
 
   return (
     <>
@@ -76,56 +72,65 @@ function RankPage() {
                   mx={2}
                 >
                   <MKTypography variant="h3" color="white">
-                    差点排名
+                    差点指数排名
                   </MKTypography>
                   <MKTypography variant="body2" color="white" opacity={0.8}>
-                    最高统计最近20场比赛成绩，再取其中一半最好成绩进行计算。
+                    累积四场有效成绩后才会有差点指数。最高统计近期20场比赛成绩，再取其中一半最好成绩进行计算。
                   </MKTypography>
                 </MKBox>
                 <MKBox p={{ xs: 3, md: 6 }}>
-                  <MKTypography variant="body2" color="grey" opacity={0.8} hidden={!noAuth}>
-                    您无权查看本页面
-                  </MKTypography>
-                  <MKBox hidden={rankArr == null}>
-                    <Grid container item justifyContent="start" xs={12} lg={5} mx="auto" mb={4}>
-                      <AppBar position="static">
-                        <Tabs value={activeTab} onChange={handleTabType}>
-                          <Tab label="本年度会员排名" />
-                          <Tab label="历届所有会员排名" />
-                        </Tabs>
-                      </AppBar>
-                    </Grid>
-                    <div className="table_1_wrap">
-                      <table className="table_1">
-                        <thead>
-                          <tr>
-                            <th>排名</th>
-                            <th>头像</th>
-                            <th>姓名</th>
-                            <th>身份</th>
-                            <th>差点指数</th>
-                            <th>统计场数</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {
-                            rankArr && rankArr.map(x => {
-                              return (
-                                <tr key={rankIndex}>
-                                  <td>{rankIndex++}</td>
-                                  <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="s" shadow="xl" /></td>
-                                  <td>{x.user_first_name} {x.user_last_name}</td>
-                                  <td>{Helper.renderUserType(x.user_category_id, x.user_category_title)}</td>
-                                  <td><a className="a1" onClick={() => navigate(`/rank/detail/${x.user_id}`)}>{x.rank_handicap_index}</a></td>
-                                  <td>{x.rank_history_count}</td>
-                                </tr>
-                              )
-                            })
-                          }
-                        </tbody>
-                      </table>
-                    </div>
-                  </MKBox>
+                  {
+                    noAuth ?
+                      <MKTypography variant="body2" color="light" opacity={0.8}>
+                        您无权查看本页面
+                      </MKTypography>
+                      :
+                      <MKBox>
+                        <Grid container item justifyContent="start" xs={12} lg={5} mx="auto" mb={4}>
+                          <AppBar position="static">
+                            <Tabs value={activeTab} onChange={handleTabType}>
+                              <Tab label="本年度会员排名" />
+                              <Tab label="历届所有会员排名" />
+                            </Tabs>
+                          </AppBar>
+                        </Grid>
+                        <div className="table_1_wrap">
+                          <table className="table_1">
+                            <thead>
+                              <tr>
+                                <th>排名</th>
+                                <th>头像</th>
+                                <th>姓名</th>
+                                <th>身份</th>
+                                <th>差点指数</th>
+                                <th>统计场数</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {
+                                rankArr ?
+                                  rankArr.map(x => {
+                                    return (
+                                      <tr key={rankIndex} className={x.rank_user_id == global.auth.cc_id ? "my" : ""}>
+                                        <td>{rankIndex++}</td>
+                                        <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="s" shadow="xl" /></td>
+                                        <td>{x.user_first_name} {x.user_last_name}</td>
+                                        <td>{Helper.renderUserType(x.user_category_id, x.user_category_title)}</td>
+                                        <td><a className="a1" onClick={() => navigate(`/rank/detail/${x.user_id}`)}>{x.rank_handicap_index}</a></td>
+                                        <td>{x.rank_history_count}</td>
+                                      </tr>
+                                    )
+                                  })
+                                  :
+                                  <tr>
+                                    <td colSpan={6} style={{padding:"3em",textAlign:"center"}}>暂无排名数据</td>
+                                  </tr>
+                              }
+                            </tbody>
+                          </table>
+                        </div>
+                      </MKBox>
+                  }
                 </MKBox>
               </Card>
             </Grid>

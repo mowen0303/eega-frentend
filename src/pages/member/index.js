@@ -124,7 +124,6 @@ function MemberPage() {
                           <th>头像</th>
                           <th><div className="a2" onClick={() => getData("lastName",orderBy,sortBy)}>姓 <span>{getIcon("lastName")}</span></div></th>
                           <th><div className="a2" onClick={() => getData("firstName",orderBy,sortBy)}>名 <span>{getIcon("firstName")}</span></div></th>
-                          <th>邮箱</th>
                           <th><div className="a2" onClick={() => getData("group",orderBy,sortBy)}>会员状态 <span>{getIcon("group")}</span></div></th>
                         </tr>
                       </thead>
@@ -137,7 +136,6 @@ function MemberPage() {
                                 <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="s" shadow="xl" /></td>
                                 <td>{x.user_last_name}</td>
                                 <td>{x.user_first_name}</td>
-                                <td>{x.user_email}</td>
                                 <td>{Helper.renderUserType(x.user_category_id, x.user_category_title)}</td>
                               </tr>
                             )

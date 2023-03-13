@@ -77,9 +77,12 @@ function EventDetailPage() {
     let container = [];
     let elements = [];
     let groudIndex = 1;
+    let totalLine = Math.ceil(event.event_max_participant / 4);
+    let currentLine = 1;
     for (let i = 1; i <= event.event_max_participant; i++) {
       elements.push(<div key={i} className={`enrollBtn ${participantObj[i - 1] ? 'occupy' : ''}`} onClick={(e) => enroll(e, i - 1)}>{participantObj[i - 1] ? `${participantObj[i - 1].user_first_name} ${participantObj[i - 1].user_last_name}` : "+"}</div>)
-      if (i % 4 == 0) {
+      if (i  ==  4 * currentLine || (4 * currentLine - i > 0 && i == event.event_max_participant)) {
+        currentLine ++;
         container.push(React.createElement("div", { className: "enrollBtnWrap", key: i }, [<div key={'a' + i} className="enrollBtnGroupTitle">第{groudIndex++}组</div>, ...elements]));
         elements = [];
       }
@@ -91,6 +94,7 @@ function EventDetailPage() {
   function enroll(e, index) {
     setCurrentEnrollIndex(index);
     setEnrollElement(e);
+    setEnrollError("");
     if (participantObj[index] && participantObj[index].participant_user_id == global.auth.cc_id) {
       setModelStage("unEnroll");
       toggleModal()
@@ -183,7 +187,7 @@ function EventDetailPage() {
             <MKTypography variant="body2" color="secondary" fontWeight="regular">
               点击报名按钮，即可报名本次比赛。
             </MKTypography>
-            <MKTypography variant="body2" color="error" fontWeight="regular">
+            <MKTypography variant="button" color="error" fontWeight="regular">
               {enrollError}
             </MKTypography>
           </MKBox>
@@ -215,7 +219,7 @@ function EventDetailPage() {
             <MKTypography variant="body2" color="secondary" fontWeight="regular">
               你确定要退出本次活动吗？
             </MKTypography>
-            <MKTypography variant="body2" color="error" fontWeight="regular">
+            <MKTypography variant="button" color="error" fontWeight="regular">
               {enrollError}
             </MKTypography>
           </MKBox>
@@ -242,7 +246,7 @@ function EventDetailPage() {
             <Grid container item xs={12} lg={12} py={1} mx="auto">
               <MKInput label="请输入你朋友的PIN" fullWidth  value={pin} onChange={e=>setPIN(e.target.value)} />
             </Grid>
-            <MKTypography variant="body2" color="error" fontWeight="regular">
+            <MKTypography variant="button" color="error" fontWeight="regular">
               {enrollError}
             </MKTypography>
           </MKBox>
@@ -285,62 +289,68 @@ function EventDetailPage() {
                   <MKTypography variant="h3" color="white">
                     {event.event_title}
                   </MKTypography>
-                  <MKTypography variant="body2" color="white" opacity={0.8}>
+                  <MKTypography variant="body2" color="white">
                     比赛日期：{event.event_date}
                   </MKTypography>
                 </MKBox>
                 <MKBox p={6} hidden={!noAuth}>
-                  <MKTypography variant="body2" color="grey" opacity={0.8}>
+                  <MKTypography variant="body2" color="inherit">
                     您无权查看本页面
                   </MKTypography>
                 </MKBox>
                 <MKBox p={{ xs: 3, md: 8 }} hidden={noAuth}>
-                  <MKTypography variant="h4" color="grey" opacity={0.8}>
+                  <MKTypography variant="h4" color="dark">
                     球场信息
                   </MKTypography>
-                  <MKTypography variant="body2" color="grey" opacity={0.8} mt={2}>
+                  <MKTypography variant="body2" color="inherit" mt={2}>
                     · 球场名称：{event.courseName}
                   </MKTypography>
                   {
                     event.t_red &&
-                    <MKTypography variant="body2" color="grey" opacity={0.8} mt={2}>
+                    <MKTypography variant="body2" color="inherit" mt={2}>
                       · Red T - Rating:{event.t_red.rating} | Slope:{event.t_red.slope} | Par:{event.t_red.par}
                     </MKTypography>
                   }
                   {
                     event.t_green &&
-                    <MKTypography variant="body2" color="grey" opacity={0.8} mt={2}>
+                    <MKTypography variant="body2" color="inherit" mt={2}>
                       · Green T - Rating:{event.t_green.rating} | Slope:{event.t_green.slope} | Par:{event.t_green.par}
                     </MKTypography>
                   }
                   {
                     event.t_white &&
-                    <MKTypography variant="body2" color="grey" opacity={0.8} mt={2}>
+                    <MKTypography variant="body2" color="inherit" mt={2}>
                       · White T - Rating:{event.t_white.rating} | Slope:{event.t_white.slope} | Par:{event.t_white.par}
                     </MKTypography>
                   }
                   {
                     event.t_blue &&
-                    <MKTypography variant="body2" color="grey" opacity={0.8} mt={2}>
+                    <MKTypography variant="body2" color="inherit" mt={2}>
                       · Blue T - Rating:{event.t_blue.rating} | Slope:{event.t_blue.slope} | Par:{event.t_blue.par}
                     </MKTypography>
                   }
                   {
                     event.t_black &&
-                    <MKTypography variant="body2" color="grey" opacity={0.8} mt={2}>
+                    <MKTypography variant="body2" color="inherit" mt={2}>
                       · Black T - Rating:{event.t_black.rating} | Slope:{event.t_black.slope} | Par:{event.t_black.par}
                     </MKTypography>
                   }
-                  <MKTypography variant="h4" color="grey" opacity={0.8} mt={4}>
+                  <MKTypography variant="h4" color="dark" mt={4}>
                     活动详情
                   </MKTypography>
                   <pre style={{ fontFamily: "Roboto,Helvetica,Arial", lineHeight: "2.2em", fontSize: "1rem", opacity: "0.8", marginTop: "1em" }}>
                     {event.event_description == "" ? "暂无活动详情信息" : event.event_description} 暂无活动详情信息
                   </pre>
-                  <MKTypography variant="h4" color="grey" opacity={0.8} mt={4}>
+                  <MKTypography variant="h4" color="dark" mt={4}>
+                    比赛状态
+                  </MKTypography>
+                  <MKTypography variant="body2" color="inherit" mt={1}>
+                    {Helper.renderEventStatus(event.event_join_status)}
+                  </MKTypography>
+                  <MKTypography variant="h4" color="dark" mt={4}>
                     比赛报名
                   </MKTypography>
-                  <MKTypography variant="body2" color="grey" opacity={0.6} mt={1}>
+                  <MKTypography variant="body2" color="inherit" mt={1}>
                     请点击下方空位进行报名，比赛开始的前一天，将进行报名锁定，无法自主报名和取消报名，届时如果想报名或取消报名，请与赛事管理员联系。
                   </MKTypography>
                   <div className="enrollBtnContainer">

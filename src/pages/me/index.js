@@ -15,7 +15,8 @@ import BasicLayout from "pages/Authentication/components/BasicLayout";
 import Author from "pages/Blogs/Author";
 
 // Images
-import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+// import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+import bgImage from "assets/images/login.jpeg";
 import { login, getUser } from 'redux/actions/userAction';
 import { connect } from 'react-redux';
 

@@ -18,15 +18,15 @@ import Helper from "helper";
 
 // Images
 // import bgImage from "assets/images/bg-coworking.jpeg";
-import bgImage from "assets/images/bg-index2.jpg";
+import bgImage from "assets/images/index1.jpeg";
 import { useEffect, useState } from "react";
 
 function HomePage() {
   const navigate = useNavigate();
 
   const [announceArr, setAnnounceArr] = useState([
-    {announce_content:"..."},
-    {announce_content:"..."},
+    { announce_content: "..." },
+    { announce_content: "..." },
   ]);
 
   useEffect(async () => {
@@ -73,31 +73,44 @@ function HomePage() {
             justifyContent={{ xs: "center", md: "start" }}
             sx={{ textAlign: { xs: "center", md: "left" } }}
           >
-            <MKTypography
-              variant="h1"
-              color="white"
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-            >
-              东方之鹰高尔夫协会
-            </MKTypography>
-            <MKTypography
-              variant="body1"
-              color="white"
-              mt={1}
-              pr={{ md: 12, lg: 24, xl: 32 }}
-              opacity={0.8}
-            >
-              以球会友 群鹰聚首 东方之鹰高尔夫协会 EEGA since 2008
-            </MKTypography>
-            <Stack direction="row" spacing={1} mt={6} mb={3}>
-              <MKButton variant="gradient" color="info" onClick={() => { navigate('/me') }}>
-                会员登录
-              </MKButton>
-            </Stack>
+            <MKBox width={"100%"}>
+              <MKTypography
+                variant="h1"
+                color="white"
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                  },
+                })}
+              >
+                东方之鹰高尔夫球会
+              </MKTypography>
+              <MKTypography
+                variant="body1"
+                color="white"
+                pr={{ md: 12, lg: 24, xl: 32 }}
+                opacity={0.8}
+                mt={1}
+              >
+                EEGA since 2008
+              </MKTypography>
+              <MKTypography
+                variant="body1"
+                color="white"
+                pr={{ md: 12, lg: 24, xl: 32 }}
+                opacity={0.8}
+                style={{fontFamily:"LiSu"}}
+              >
+                以球会友 群鹰聚首
+              </MKTypography>
+            </MKBox>
+            <MKBox>
+              <Stack direction="row" spacing={1} mt={6} mb={3}>
+                <MKButton variant="gradient" color="info" onClick={() => { navigate('/me') }}>
+                  会员登录
+                </MKButton>
+              </Stack>
+            </MKBox>
           </Grid>
         </Container>
       </MKBox>

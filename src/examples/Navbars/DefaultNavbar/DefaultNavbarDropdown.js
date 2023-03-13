@@ -100,7 +100,7 @@ DefaultNavbarDropdown.propTypes = {
   light: PropTypes.bool,
   href: PropTypes.string,
   route: PropTypes.string,
-  collapse: PropTypes.bool.isRequired,
+  collapse: PropTypes.bool,
 };
 
 export default DefaultNavbarDropdown;

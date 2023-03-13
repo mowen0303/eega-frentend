@@ -9,6 +9,7 @@ import MemberPage from "pages/member";
 import SponsorPage from "pages/sponsor";
 import PicPage from "pages/pic";
 import MePage from "pages/me";
+import InfoPage from "pages/info";
 
 const routes = [
   {
@@ -24,19 +25,19 @@ const routes = [
     component: <MemberPage />,
   },
   {
-    name: "比赛报名",
+    name: "比赛",
     icon: <Icon>sports_golf</Icon>,
     route: "/event",
     component: <EventListPage />,
   },
   {
-    name: "比赛成绩",
+    name: "成绩",
     icon: <Icon>star_rate</Icon>,
     route: "/score",
     component: <ScoreListPage />,
   },
   {
-    name: "差点排名",
+    name: "差点指数",
     icon: <Icon>emoji_events</Icon>,
     route: "/rank",
     component: <RankPage />,
@@ -46,6 +47,12 @@ const routes = [
     icon: <Icon>workspace_premium</Icon>,
     route: "/sponsor",
     component: <SponsorPage />,
+  },
+  {
+    name: "球会资讯",
+    icon: <Icon>campaign</Icon>,
+    route: "/info",
+    component: <InfoPage />,
   },
   {
     name: "活动照片",

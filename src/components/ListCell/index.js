@@ -1,15 +1,16 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
-import MuiLink from "@mui/material/Link";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import Helper from "helper";
+import { useNavigate } from "react-router-dom";
 
-function ListCell({ image, title, description, categories, action, action2 }) {
+function ListCell({ image, title, description, categories, action, status }) {
+  const navigate = useNavigate();
+
   return (
-    <Card style={{ border: "1px solid #eee" }}>
+    <Card style={{ border: "1px solid #eee",cursor:"pointer" }} onClick={() => { navigate(action.route) }} className="listCard">
       <MKBox position="relative" borderRadius="lg" mx={2} mt={2}>
         <MKBox
           borderRadius="lg"
@@ -27,7 +28,7 @@ function ListCell({ image, title, description, categories, action, action2 }) {
           }}
         />
       </MKBox>
-      <MKTypography display="inline" variant="h5" fontWeight="bold" sx={{ml:3}}>
+      <MKTypography display="inline" variant="h5" fontWeight="bold" sx={{ml:3}} style={{height:"2.5em"}}>
         {title}
       </MKTypography>
       <MKBox p={3} mt={-2}>
@@ -42,38 +43,14 @@ function ListCell({ image, title, description, categories, action, action2 }) {
             {categories.map((category) => (
               <Fragment key={category}>{category}&nbsp;&bull;&nbsp;</Fragment>
             ))}
+            {Helper.renderEventStatus(status)}
           </MKTypography>
         )}
-        <MKBox mt={1} mb={3}>
+        <MKBox>
           <MKTypography variant="body2" component="p" color="text">
             {description}
           </MKTypography>
         </MKBox>
-        {action.type === "external" ? (
-          <MKButton
-            component={MuiLink}
-            href={action.route}
-            target="_blank"
-            rel="noreferrer"
-            variant="outlined"
-            size="small"
-            sx={{ mr: 2 }}
-            color={action.color ? action.color : "dark"}
-          >
-            {action.label}
-          </MKButton>
-        ) : (
-          <MKButton
-            component={Link}
-            to={action.route}
-            variant="outlined"
-            size="small"
-            sx={{ mr: 2 }}
-            color={action.color ? action.color : "dark"}
-          >
-            {action.label}
-          </MKButton>
-        )}
       </MKBox>
     </Card>
   );

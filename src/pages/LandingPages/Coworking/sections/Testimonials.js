@@ -66,14 +66,12 @@ function Testimonials() {
                   mb={2}
                   sx={{ fontSize: "1.125rem" }}
                 >
-                  东方之鹰高尔夫协会，由多伦多华人企业家，专业人士和各界英才组成，
-                  鹰会汇聚了多伦多一众知名高尔夫球高手，一级痛并快乐着的鹰友。
+                  东方之鹰高尔夫球会，由多伦多华人企业家，专业人士和各界英才组成。
+                  鹰会汇聚了多伦多一众知名高尔夫球高手，以及痛并快乐着的鹰友。
                 </MKTypography>
                 <MKTypography variant="button" fontWeight="bold" color="white">
-                  郭涛 -{" "}
-                  <MKTypography variant="caption" color="white">
-                    会长寄语
-                  </MKTypography>
+                  <p>欢迎球友加入鹰会大家庭</p>
+                  <p>联系我们：eega2022@hotmail.com</p>
                 </MKTypography>
               </Grid>
               <Grid item xs={1} />
@@ -87,7 +85,7 @@ function Testimonials() {
                   500 +
                 </MKTypography>
                 <MKTypography component="p" variant="button" color="white" opacity={0.8} mb={2}>
-                  鹰会成立至今已有10年，累计参与人数500+
+                  鹰会成立至今已有15年，累计参与人数500+
                 </MKTypography>
               </Grid>
             </Grid>
