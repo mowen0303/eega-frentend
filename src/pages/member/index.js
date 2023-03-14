@@ -16,7 +16,8 @@ import MKButton from "components/MKButton";
 
 function MemberPage() {
   const navigate = useNavigate();
-  const [noAuth, setNoAuth] = useState(false);
+  const [noAuth, setNoAuth] = useState(true);
+  const [noAuthText, setNoAuthText] = useState("...");
   const [memberArr, setMemberArr] = useState(null);
   const [amount, setAmount] = useState(null);
   const [sortBy, setSortBy] = useState("desc");
@@ -36,10 +37,10 @@ function MemberPage() {
     }
   }
 
-  async function getData(newOrderBy,previousOrderBy,currentSortBy) {
+  async function getData(newOrderBy, previousOrderBy, currentSortBy) {
     try {
       let sortBy = "asc";
-      if(newOrderBy == previousOrderBy && currentSortBy == "asc"){
+      if (newOrderBy == previousOrderBy && currentSortBy == "asc") {
         sortBy = "desc";
       }
       setOrderBy(newOrderBy);
@@ -49,29 +50,29 @@ function MemberPage() {
       const res = await axios.get(url, Helper.hostHeaders);
       if (res.data.result) {
         setMemberArr(res.data.result);
+        setNoAuth(false);
       } else {
         throw new Error(res.data.message);
       }
     } catch (e) {
-      getAmountOfUser();
+      let amount = await getAmountOfUser();
       if (e.response.data.code == 403) {
         setNoAuth(true);
+        setNoAuthText(`当前共有 ${amount} 名注册会员，详细会员名单请登录后查看。`);
       }
       setMemberArr(null)
     }
   }
 
   useEffect(async () => {
-    getData('group',orderBy, sortBy);
+    getData('group', orderBy, sortBy);
   }, [])
 
   async function getAmountOfUser() {
     try {
       const url = `${Helper.host}/restAPI/userController.php?action=getAmountOfUser`;
       const res = await axios.get(url, Helper.hostHeaders);
-      if (res.data.result) {
-        setAmount(res.data.result.amount);
-      }
+      return res.data.result.amount;
     } catch (e) {
 
     }
@@ -107,43 +108,46 @@ function MemberPage() {
                   </MKTypography>
                 </MKBox>
                 <MKBox p={{ xs: 3, md: 6 }}>
-                  <div hidden={!noAuth}>
-                    <MKTypography variant="body2" color="grey" opacity={0.8} >
-                      当前共有 {amount} 名注册会员，详细会员名单请登录后查看。
-                    </MKTypography>
-                    <MKButton variant="gradient" color="info" onClick={() => { navigate('/me') }} style={{ marginTop: '20px' }}>
-                      登录
-                    </MKButton>
-                  </div>
-
-                  <div className="table_1_wrap">
-                    <table className="table_1" hidden={memberArr == null}>
-                      <thead>
-                        <tr>
-                          <th><div className="a2" onClick={() => getData("userId",orderBy,sortBy)}>编号 <span>{getIcon("userId")}</span></div></th>
-                          <th>头像</th>
-                          <th><div className="a2" onClick={() => getData("lastName",orderBy,sortBy)}>姓 <span>{getIcon("lastName")}</span></div></th>
-                          <th><div className="a2" onClick={() => getData("firstName",orderBy,sortBy)}>名 <span>{getIcon("firstName")}</span></div></th>
-                          <th><div className="a2" onClick={() => getData("group",orderBy,sortBy)}>会员状态 <span>{getIcon("group")}</span></div></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {
-                          memberArr && memberArr.map(x => {
-                            return (
-                              <tr key={x.user_id}>
-                                <td>{x.user_id}</td>
-                                <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="s" shadow="xl" /></td>
-                                <td>{x.user_last_name}</td>
-                                <td>{x.user_first_name}</td>
-                                <td>{Helper.renderUserType(x.user_category_id, x.user_category_title)}</td>
-                              </tr>
-                            )
-                          })
-                        }
-                      </tbody>
-                    </table>
-                  </div>
+                  {
+                    noAuth ?
+                      <div>
+                        <MKTypography variant="body2" color="text">
+                          {noAuthText}
+                        </MKTypography>
+                        <MKButton variant="gradient" color="info" onClick={() => { navigate('/me') }} style={{ marginTop: '20px', display: noAuthText == "..." ? "none" : "block"}}>
+                          登录
+                        </MKButton>
+                      </div>
+                      :
+                      <div className="table_1_wrap">
+                        <table className="table_1" hidden={memberArr == null}>
+                          <thead>
+                            <tr>
+                              <th><div className="a2" onClick={() => getData("userId", orderBy, sortBy)}>编号 <span>{getIcon("userId")}</span></div></th>
+                              <th>头像</th>
+                              <th><div className="a2" onClick={() => getData("lastName", orderBy, sortBy)}>姓 <span>{getIcon("lastName")}</span></div></th>
+                              <th><div className="a2" onClick={() => getData("firstName", orderBy, sortBy)}>名 <span>{getIcon("firstName")}</span></div></th>
+                              <th><div className="a2" onClick={() => getData("group", orderBy, sortBy)}>会员状态 <span>{getIcon("group")}</span></div></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {
+                              memberArr && memberArr.map(x => {
+                                return (
+                                  <tr key={x.user_id}>
+                                    <td>{x.user_id}</td>
+                                    <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="s" shadow="xl" /></td>
+                                    <td>{x.user_last_name}</td>
+                                    <td>{x.user_first_name}</td>
+                                    <td>{Helper.renderUserType(x.user_category_id, x.user_category_title)}</td>
+                                  </tr>
+                                )
+                              })
+                            }
+                          </tbody>
+                        </table>
+                      </div>
+                  }
                 </MKBox>
               </Card>
             </Grid>

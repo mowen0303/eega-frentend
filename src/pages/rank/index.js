@@ -17,7 +17,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
 function RankPage() {
-  const [noAuth, setNoAuth] = useState(false);
+  const [noAuth, setNoAuth] = useState(true);
+  const [noAuthText, setNoAuthText] = useState("...");
   const [rankArr, setRankArr] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
 
@@ -28,14 +29,16 @@ function RankPage() {
     try {
       const url = `${Helper.host}/restAPI/rankController.php?action=getRank&type=${val}`;
       const res = await axios.get(url, Helper.hostHeaders);
-      if (res.data.result) {
+      if (res.data.message == "Success") {
         setRankArr(res.data.result);
+        setNoAuth(false);
       } else {
         throw new Error(res.data.message);
       }
     } catch (e) {
       if (e && e.response && e.response.data.code == 403) {
         setNoAuth(true);
+        setNoAuthText("您无权查看本页面");
       }
       setRankArr(null)
     }
@@ -81,8 +84,8 @@ function RankPage() {
                 <MKBox p={{ xs: 3, md: 6 }}>
                   {
                     noAuth ?
-                      <MKTypography variant="body2" color="light" opacity={0.8}>
-                        您无权查看本页面
+                      <MKTypography variant="body2" color="text">
+                        {noAuthText}
                       </MKTypography>
                       :
                       <MKBox>
