@@ -10,6 +10,7 @@ import DefaultNavbarDropdown from "examples/Navbars/DefaultNavbar/DefaultNavbarD
 import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMobile";
 import breakpoints from "assets/theme/base/breakpoints";
 import { connect } from 'react-redux';
+import bgImage from "assets/images/logo.png";
 
 function DefaultNavbar(props) {
   const [mobileNavbar, setMobileNavbar] = useState(false);
@@ -63,7 +64,7 @@ function DefaultNavbar(props) {
   return (
     <Container sx={sticky ? { position: "sticky", top: 0, zIndex: 10 } : null}>
       <MKBox
-        py={1}
+        py={0}
         px={{ xs: 4, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}
         my={relative ? 0 : 2}
         mx={relative ? 0 : 3}
@@ -87,9 +88,10 @@ function DefaultNavbar(props) {
             py={transparent ? 1.5 : 0.75}
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
           >
-            <MKTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
+            <img src={bgImage} style={{width:"34px"}}/>
+            {/* <MKTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
               {brand}
-            </MKTypography>
+            </MKTypography> */}
           </MKBox>
           <MKBox
             color="inherit"

@@ -23,7 +23,7 @@ function PicDetailPage() {
 
   async function getEventData() {
     try {
-      const url = `${Helper.host}/restAPI/eventController.php?action=getEvent&eventId=${eventId}`;
+      const url = `${Helper.host}/restAPI/eventController.php?action=getEventReview&eventId=${eventId}`;
       const res = await axios.get(url, Helper.hostHeaders);
       if (res.data.result) {
         setEvent(res.data.result);

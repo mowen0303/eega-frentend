@@ -28,3 +28,4 @@
 .articleWrap table {width: 100%; overflow: hidden; color: #6a6a6a; border-collapse: collapse;}
 .articleWrap table th,.articleWrap table td { border-collapse: collapse; text-align: left; padding:1em; border:1px solid #e4e4e4}
 .articleWrap tr:hover {background-color: #efefef; transition: 0.5s;}
+.articleWrap img {max-width: 100%;}
