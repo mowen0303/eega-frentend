@@ -78,7 +78,7 @@ function Profile(props) {
         <Grid container item xs={12} justifyContent="center" mx="auto">
           <MKBox mt={{ xs: -16, md: -20 }} textAlign="center">
             {
-              props.profile.data.user_avatar && <MKAvatar src={`${Helper.host}${props.profile.data.user_avatar}`} alt="Burce Mars" size="xxl" shadow="xl" />
+              props.profile.data.user_avatar && <MKAvatar src={`${Helper.host}${props.profile.data.user_avatar}`} size="xxl" shadow="xl" />
             }
           </MKBox>
         </Grid>
