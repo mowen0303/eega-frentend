@@ -58,7 +58,7 @@ function App(props) {
                 <Route exact path="/rank/detail/:userId" element={<RankDetailPage />} />
                 <Route exact path="/score/detail/:eventId" element={<ScoreDetailPage />} />
                 <Route exact path="/score/history/:participantId" element={<ScoreHistoryPage />} />
-                <Route exact path="/pic/detail/:eventId" element={<PicDetailPage />} />
+                <Route exact path="/pic/detail/:id" element={<PicDetailPage />} />
                 <Route exact path="/me" element={<MePage />} />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>

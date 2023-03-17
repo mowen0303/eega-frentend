@@ -20,6 +20,7 @@
 .occupy {background: linear-gradient(195deg, #EC407A, #D81B60);}
 .enrollBtn:hover {background: linear-gradient(195deg, #0d8eff, #006eff); transition-duration: 1s;}
 .occupy:hover {background: linear-gradient(195deg, #EC407A, #D81B60);}
+.occupy.my {background: linear-gradient(195deg, #5fec40, #1bd857)}
 
 .listCard {transition: 1s !important;}
 .listCard:hover {background: #eef5fb;}

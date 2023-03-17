@@ -13,8 +13,8 @@ import Helper from "helper";
 import { useNavigate, useParams } from "react-router-dom";
 
 function PicDetailPage() {
-  const { eventId } = useParams();
-  const [event, setEvent] = useState({});
+  const { id } = useParams();
+  const [article, setArticle] = useState({});
   const [noAuth, setNoAuth] = useState(false);
 
   useEffect(async () => {
@@ -23,10 +23,10 @@ function PicDetailPage() {
 
   async function getEventData() {
     try {
-      const url = `${Helper.host}/restAPI/eventController.php?action=getEventReview&eventId=${eventId}`;
+      const url = `${Helper.host}/restAPI/articleController.php?action=getArticle&id=${id}`;
       const res = await axios.get(url, Helper.hostHeaders);
       if (res.data.result) {
-        setEvent(res.data.result);
+        setArticle(res.data.result);
       } else {
         throw new Error(res.data.message);
       }
@@ -34,7 +34,7 @@ function PicDetailPage() {
       if (e.response && e.response.data.code == 403) {
         setNoAuth(true);
       }
-      setEvent({})
+      setArticle({})
     }
   }
 
@@ -60,10 +60,10 @@ function PicDetailPage() {
                   mx={2}
                 >
                   <MKTypography variant="h3" color="white">
-                    {event.event_title}活动照片
+                    {article.article_title}
                   </MKTypography>
                   <MKTypography variant="body2" color="white" opacity={0.8}>
-                    {event.event_date}
+                    {article.article_date}
                   </MKTypography>
                 </MKBox>
                 <MKBox p={{ xs: 3, md: 6 }} pt={{ xs: 0, md: 2 }}>
@@ -74,7 +74,7 @@ function PicDetailPage() {
                       </MKTypography>
                     </MKBox>
                     <MKBox p={{ xs: 3, md: 6 }} hidden={noAuth}>
-                      <div className="articleWrap" dangerouslySetInnerHTML={{__html:event.event_review_content}}></div>
+                      <div className="articleWrap" dangerouslySetInnerHTML={{__html:article.article_content}}></div>
                     </MKBox>
                   </Grid>
                 </MKBox>

@@ -98,7 +98,7 @@ function HomePage() {
                 EEGA since 2008
               </MKTypography>
               <MKTypography
-                variant="body1"
+                variant="h3"
                 color="white"
                 pr={{ md: 12, lg: 24, xl: 32 }}
                 opacity={0.8}

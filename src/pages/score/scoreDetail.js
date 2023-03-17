@@ -112,7 +112,7 @@ function ScoreDetailPage() {
                           <th>姓名</th>
                           <th>T</th>
                           <th>(S/R/P)</th>
-                          <th><div className="a2" onClick={() => getData("participant_score", sortBy == "asc" ? "desc" : "asc")}>毛杆 <span>{getIcon("participant_score")}</span></div></th>
+                          <th><div className="a2" onClick={() => getData("participant_score", sortBy == "asc" ? "desc" : "asc")}>总杆 <span>{getIcon("participant_score")}</span></div></th>
                           <th>差点微分</th>
                           <th>历史差点指数<br/><span style={{fontSize:"0.8em"}}>本场成绩不计入</span></th>
                           <th><div className="a2" onClick={() => getData("participant_net_score", sortBy == "asc" ? "desc" : "asc")}>净杆 <span>{getIcon("participant_net_score")}</span></div></th>

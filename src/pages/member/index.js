@@ -134,9 +134,13 @@ function MemberPage() {
                             {
                               memberArr && memberArr.map(x => {
                                 return (
-                                  <tr key={x.user_id}>
+                                  <tr key={x.user_id} className={x.user_id == global.auth.cc_id ? "my" : ""}>
                                     <td>{x.user_id}</td>
-                                    <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="s" shadow="xl" /></td>
+                                    <td style={{padding:"1em"}}>
+                                      <div style={{width:"54px",height:"54px",borderRadius:"100px",overflow:"hidden"}}>
+                                        <img src={`${Helper.host}${x.user_avatar}`} style={{height:"100%",width:"100%",objectFit:"cover"}}/>
+                                      </div>
+                                    </td>
                                     <td>{x.user_last_name}</td>
                                     <td>{x.user_first_name}</td>
                                     <td>{Helper.renderUserType(x.user_category_id, x.user_category_title)}</td>

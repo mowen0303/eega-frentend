@@ -10,10 +10,10 @@ import 'style/css.css'
 import routes from "routes";
 import axios from "axios";
 import Helper from "helper";
-import ListCell from "components/ListCell";
+import PicCell from "components/PicCell";
 
 function PicPage() {
-  const [eventList, setEventList] = useState([]);
+  const [articleList, setarticleList] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState({});
 
   useEffect(async () => {
@@ -22,10 +22,10 @@ function PicPage() {
 
   async function getListData() {
     try {
-      const url = `${Helper.host}/restAPI/eventController.php?action=getEventReviewList`;
+      const url = `${Helper.host}/restAPI/articleController.php?action=getArticleList`;
       const res = await axios.get(url, Helper.hostHeaders);
       if (res.data.result) {
-        setEventList(res.data.result);
+        setarticleList(res.data.result);
         setSelectedEvent(res.data.result[0]);
       } else {
         throw new Error(res.data.message);
@@ -64,21 +64,17 @@ function PicPage() {
                   </MKTypography>
                 </MKBox>
                 <MKBox p={{ xs: 3, md: 6 }} pt={{ xs: 0, md: 2 }}>
-                  <Grid container spacing={3} sx={{ mt: 0 }}>
-                    {eventList.map(x => {
+                  <Grid container spacing={3} sx={{ mt: 3 }}>
+                    {articleList && articleList.length > 0 && articleList.map(x => {
                       return (
-                        <Grid item xs={12} md={6} lg={4}>
-                          <MKBox mt={1}>
-                            <ListCell
-                              title={x.event_title}
-                              description={`比赛球场：${x.courseName}`}
-                              categories={[x.event_date, x.event_type == 'week' ? '周场' : '月场',`${x.event_max_participant}人`]}
-                              action={{
-                                type: "internal",
-                                route: `/pic/detail/${x.event_id}`,
-                                color: "info",
-                                label: "查看本次活动照片",
-                              }}
+                        <Grid item xs={12} md={6} lg={4} key={x.article_id}>
+                          <MKBox mt={3}>
+                            <PicCell 
+                            title={x.article_title}
+                            date={x.article_date}
+                            action={`/pic/detail/${x.article_id}`}
+                            image={x.article_img}
+                            description={x.article_description}
                             />
                           </MKBox>
                         </Grid>

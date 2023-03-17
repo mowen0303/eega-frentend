@@ -80,10 +80,9 @@ function EventDetailPage() {
     let container = [];
     let elements = [];
     let groudIndex = 1;
-    let totalLine = Math.ceil(event.event_max_participant / 4);
     let currentLine = 1;
     for (let i = 1; i <= event.event_max_participant; i++) {
-      elements.push(<div key={i} className={`enrollBtn ${participantObj[i - 1] ? 'occupy' : ''}`} onClick={(e) => enroll(e, i - 1)}>{participantObj[i - 1] ? `${participantObj[i - 1].user_first_name} ${participantObj[i - 1].user_last_name}` : "+"}</div>)
+      elements.push(<div key={i} className={`enrollBtn ${participantObj[i - 1] ? 'occupy' : ''} ${participantObj[i - 1] && participantObj[i - 1].participant_user_id == global.auth.cc_id ? "my" : ""}`} onClick={(e) => enroll(e, i - 1)}>{participantObj[i - 1] ? `${participantObj[i - 1].user_first_name} ${participantObj[i - 1].user_last_name}` : "+"}</div>)
       if (i == 4 * currentLine || (4 * currentLine - i > 0 && i == event.event_max_participant)) {
         currentLine++;
         container.push(React.createElement("div", { className: "enrollBtnWrap", key: i }, [<div key={'a' + i} className="enrollBtnGroupTitle">第{groudIndex++}组</div>, ...elements]));
@@ -118,7 +117,8 @@ function EventDetailPage() {
       }, Helper.hostHeaders);
       if (res.data.result) {
         enrollElement.target.innerText = `${res.data.result.user_first_name} ${res.data.result.user_last_name}`;
-        enrollElement.target.classList.add('occupy');
+        //enrollElement.target.classList.add('occupy');
+        // if(res.data.result.participant_user_id == global.auth.cc_id) enrollElement.target.classList.add('my');
         participantObj[currentEnrollIndex] = res.data.result;
         setParticipantObj(participantObj);
         toggleModal();
@@ -356,9 +356,18 @@ function EventDetailPage() {
                       <MKTypography variant="h4" color="dark" mt={4}>
                         比赛报名
                       </MKTypography>
-                      <MKTypography variant="body2" color="inherit" mt={1}>
-                        请点击下方空位进行报名，比赛开始的前一天，将进行报名锁定，无法自主报名和取消报名，届时如果想报名或取消报名，请与赛事管理员联系。
-                      </MKTypography>
+                      <MKBox ml={3}>
+                        <MKTypography variant="body2" color="inherit" mt={1}>
+                          1. 点击下方空位进行报名。
+                        </MKTypography>
+                        <MKTypography variant="body2" color="inherit">
+                          2. 比赛最早开放报名的日期为比赛日的前14天。
+                        </MKTypography>
+                        <MKTypography variant="body2" color="inherit">
+                          3. 比赛日的前一天，名单将被锁定，届时将无法自主报名和取消报名，如果想补报或取消报名，请与赛事管理员联系。
+                        </MKTypography>
+                      </MKBox>
+                      
                       <div className="enrollBtnContainer">
                         {participantObj && renderEnrollBtn()}
                       </div>
