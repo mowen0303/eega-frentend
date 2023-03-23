@@ -344,8 +344,8 @@ function EventDetailPage() {
                       <MKTypography variant="h4" color="dark" mt={4}>
                         活动详情
                       </MKTypography>
-                      <pre style={{ fontFamily: "Roboto,Helvetica,Arial", lineHeight: "2.2em", fontSize: "1rem", opacity: "0.8", marginTop: "1em" }}>
-                        {event.event_description == "" ? "暂无活动详情信息" : event.event_description} 暂无活动详情信息
+                      <pre className="pre">
+                        {event.event_description == "" ? "暂无活动详情信息" : event.event_description}
                       </pre>
                       <MKTypography variant="h4" color="dark" mt={4}>
                         比赛状态
@@ -364,7 +364,7 @@ function EventDetailPage() {
                           2. 比赛最早开放报名的日期为比赛日的前14天。
                         </MKTypography>
                         <MKTypography variant="body2" color="inherit">
-                          3. 比赛日的前一天，名单将被锁定，届时将无法自主报名和取消报名，如果想补报或取消报名，请与赛事管理员联系。
+                          3. 比赛日的前1天，名单将被锁定，届时将无法自主报名和取消报名，如果想补报或取消报名，请与赛事管理员联系。
                         </MKTypography>
                       </MKBox>
                       

@@ -8,14 +8,24 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import SimpleFooter from "examples/Footers/SimpleFooter";
 import ListCell from "components/ListCell";
 import routes from "routes";
-import { getEventList } from "redux/actions/eventAction";
-import { connect } from "react-redux";
+import axios from "axios";
+import Helper from "helper";
 
 
-function ScoreListPage(props) {
+function ScoreListPage() {
 
-  useEffect(() => {
-    props.getEventList();
+  const [eventArr, setEventArr] = useState();
+
+  useEffect(async () => {
+    try {
+      const url = `${Helper.host}/restAPI/eventController.php?action=getEventListWithScore`;
+      const res = await axios.get(url, Helper.hostHeaders);
+      if (res.data.result) {
+        setEventArr(res.data.result);
+      }
+    } catch (e) {
+
+    }
   }, []);
 
   return (
@@ -48,7 +58,7 @@ function ScoreListPage(props) {
                 </MKBox>
                 <MKBox p={{ xs: 3, md: 6 }} pt={{ xs: 0, md: 2 }}>
                   <Grid container spacing={3} sx={{ mt: 0 }}>
-                    {props.eventList && props.eventList.data && props.eventList.data.length > 0 && props.eventList.data.map(x => {
+                    {eventArr && eventArr.length > 0 && eventArr.map(x => {
                       return (
                         <Grid item xs={12} md={6} lg={4} key={x.event_id}>
                           <MKBox mt={1}>
@@ -82,10 +92,5 @@ function ScoreListPage(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  eventList: state.eventReducer.eventList
-})
 
-const mapDispatchToProps = { getEventList }
-
-export default connect(mapStateToProps, mapDispatchToProps)(ScoreListPage);
+export default ScoreListPage;

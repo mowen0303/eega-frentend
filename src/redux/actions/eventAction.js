@@ -7,7 +7,7 @@ import axios from "axios";
 
 export const getEventList = () => async dispatch => {
     try {
-        const url = `${Helper.host}/restAPI/eventController.php?action=getEventList`;
+        const url = `${Helper.host}/restAPI/eventController.php?action=getValidateEventList`;
         const res = await axios.get(url, Helper.hostHeaders);
         if(res.data.result){
             dispatch({

@@ -1,4 +1,7 @@
 import MKBadge from "components/MKBadge";
+import imgRank1 from "assets/images/rank1.png";
+import imgRank2 from "assets/images/rank2.png";
+import imgRank3 from "assets/images/rank3.png";
 
 export default class Helper {
 
@@ -57,6 +60,19 @@ export default class Helper {
         return <MKBadge badgeContent={title} color="error" container />
       default:
         return title
+    }
+  }
+
+  static renderRankNumber = (i) => {
+    switch(i){
+      case 1:
+        return <img className="rankIcon" src={imgRank1}/>
+      case 2:
+        return <img className="rankIcon" src={imgRank2}/>
+      case 3:
+        return <img className="rankIcon" src={imgRank3}/>
+      default:
+        return <span className="rankText">{i}</span>
     }
   }
   

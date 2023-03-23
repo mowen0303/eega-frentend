@@ -10,6 +10,7 @@ import 'style/css.css'
 import routes from "routes";
 import axios from "axios";
 import Helper from "helper";
+import Icon from "@mui/material/Icon";
 import { useNavigate, useParams } from "react-router-dom";
 
 function PicDetailPage() {
@@ -66,16 +67,22 @@ function PicDetailPage() {
                     {article.article_date}
                   </MKTypography>
                 </MKBox>
-                <MKBox p={{ xs: 3, md: 6 }} pt={{ xs: 0, md: 2 }}>
-                  <Grid container spacing={3} sx={{ mt: 0 }}>
-                    <MKBox p={6} hidden={!noAuth}>
-                      <MKTypography variant="body2" color="grey" opacity={0.8}>
-                        您无权查看本页面
-                      </MKTypography>
-                    </MKBox>
-                    <MKBox p={{ xs: 3, md: 6 }} hidden={noAuth}>
-                      <div className="articleWrap" dangerouslySetInnerHTML={{__html:article.article_content}}></div>
-                    </MKBox>
+                <MKBox p={{ xs: 1, md: 6 }} pt={{ xs: 0, md: 2 }}>
+                  <Grid container sx={{ mt: 0 }}>
+                    <Grid item xs={12} md={12}>
+                      <MKBox p={6} hidden={!noAuth}>
+                        <MKTypography variant="body2" color="grey" opacity={0.8}>
+                          您无权查看本页面
+                        </MKTypography>
+                      </MKBox>
+                      <MKBox p={{ xs: 3, md: 6 }} hidden={noAuth}>
+                        <div className="quote">
+                          <Icon fontSize="large">format_quote</Icon>
+                          <div>{article.article_description}</div>
+                        </div>
+                        <div className="articleWrap" dangerouslySetInnerHTML={{ __html: article.article_content }}></div>
+                      </MKBox>
+                    </Grid>
                   </Grid>
                 </MKBox>
               </Card>

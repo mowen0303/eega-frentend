@@ -21,7 +21,7 @@ function PicCell({ image, title,date, description, categories, action }) {
           width="100%"
           position="relative"
           zIndex={1}
-          height={210}
+          height={220}
           style={{objectFit:"cover"}}
         />
         <MKBox
@@ -54,7 +54,7 @@ function PicCell({ image, title,date, description, categories, action }) {
             ))}
           </MKTypography>
         )}
-        <MKTypography display="block" variant="h5" fontWeight="bold" height={50} style={{overflow:"hidden"}}>
+        <MKTypography display="block" variant="h5" fontWeight="bold" height={25} style={{overflow:"hidden"}}>
           {title}
         </MKTypography>
         <MKBox mt={1} mb={0}>

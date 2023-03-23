@@ -57,7 +57,7 @@ function SimpleFooter({ company, light }) {
 
 // Setting default values for the props of SimpleFooter
 SimpleFooter.defaultProps = {
-  company: { href: "https://www.v-tec.ca/", name: "v-tec" },
+  company: { href: "http://www.v-tec.ca/", name: "v-tec" },
   light: false,
 };
 

@@ -10,7 +10,6 @@ import 'style/css.css'
 import routes from "routes";
 import axios from "axios";
 import Helper from "helper";
-import MKAvatar from "components/MKAvatar";
 import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
@@ -104,9 +103,9 @@ function RankPage() {
                                 <th>排名</th>
                                 <th>头像</th>
                                 <th>姓名</th>
-                                <th>身份</th>
                                 <th>差点指数</th>
                                 <th>统计场数</th>
+                                <th>身份</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -115,18 +114,22 @@ function RankPage() {
                                   rankArr.map(x => {
                                     return (
                                       <tr key={rankIndex} className={x.rank_user_id == global.auth.cc_id ? "my" : ""}>
-                                        <td>{rankIndex++}</td>
-                                        <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="s" shadow="xl" /></td>
+                                        <td>{Helper.renderRankNumber(rankIndex++)}</td>
+                                        <td style={{ padding: "1em" }}>
+                                          <div style={{ width: "54px", height: "54px", borderRadius: "100px", overflow: "hidden" }}>
+                                            <img src={`${Helper.host}${x.user_avatar}`} style={{ height: "100%", width: "100%", objectFit: "cover" }} />
+                                          </div>
+                                        </td>
                                         <td>{x.user_first_name} {x.user_last_name}</td>
-                                        <td>{Helper.renderUserType(x.user_category_id, x.user_category_title)}</td>
                                         <td><a className="a1" onClick={() => navigate(`/rank/detail/${x.user_id}`)}>{x.rank_handicap_index}</a></td>
                                         <td>{x.rank_history_count}</td>
+                                        <td>{Helper.renderUserType(x.user_category_id, x.user_category_title)}</td>
                                       </tr>
                                     )
                                   })
                                   :
                                   <tr>
-                                    <td colSpan={6} style={{padding:"3em",textAlign:"center"}}>暂无排名数据</td>
+                                    <td colSpan={6} style={{ padding: "3em", textAlign: "center" }}>暂无排名数据</td>
                                   </tr>
                               }
                             </tbody>

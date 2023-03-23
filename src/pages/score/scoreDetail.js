@@ -26,6 +26,7 @@ function ScoreDetailPage() {
 
   function getIcon(watchLabel) {
     let icon = "";
+    let sortBy = "desc";
     if (sortBy == "asc") {
       icon = "▴";
     } else {
@@ -57,7 +58,7 @@ function ScoreDetailPage() {
         throw new Error(res.data.message);
       }
     } catch (e) {
-      if (e.response.data.code == 403) {
+      if (e && e.response && e.response.data.code == 403) {
         setNoAuth(true);
       }
       setScoreArr(null)
@@ -68,7 +69,7 @@ function ScoreDetailPage() {
     getData(orderBy, sortBy);
   }, [])
 
-  
+
 
 
   return (
@@ -107,15 +108,15 @@ function ScoreDetailPage() {
                     <table className="table_1" hidden={scoreArr == null}>
                       <thead>
                         <tr>
-                          <th style={{width:'150px'}}>排名</th>
+                          <th style={{ width: '150px' }}>排名</th>
                           <th>头像</th>
                           <th>姓名</th>
                           <th>T</th>
                           <th>(S/R/P)</th>
-                          <th><div className="a2" onClick={() => getData("participant_score", sortBy == "asc" ? "desc" : "asc")}>总杆 <span>{getIcon("participant_score")}</span></div></th>
+                          <th><div className="a2" onClick={() => getData("participant_score", "asc")}>总杆 <span>{getIcon("participant_score")}</span></div></th>
                           <th>差点微分</th>
-                          <th>历史差点指数<br/><span style={{fontSize:"0.8em"}}>本场成绩不计入</span></th>
-                          <th><div className="a2" onClick={() => getData("participant_net_score", sortBy == "asc" ? "desc" : "asc")}>净杆 <span>{getIcon("participant_net_score")}</span></div></th>
+                          <th>历史差点指数<br /><span style={{ fontSize: "0.8em" }}>本场成绩不计入</span></th>
+                          <th><div className="a2" onClick={() => getData("participant_net_score", "asc")}>净杆 <span>{getIcon("participant_net_score")}</span></div></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -123,8 +124,12 @@ function ScoreDetailPage() {
                           scoreArr && scoreArr.map(x => {
                             return (
                               <tr key={rankIndex} className={x.participant_user_id == global.auth.cc_id ? "my" : ""}>
-                                <td>{rankIndex++}</td>
-                                <td><MKAvatar src={`${Helper.host}${x.user_avatar}`} alt="Burce Mars" size="md" shadow="xl" /></td>
+                                <td>{Helper.renderRankNumber(rankIndex++)}</td>
+                                <td style={{ padding: "1em" }}>
+                                  <div style={{ width: "54px", height: "54px", borderRadius: "100px", overflow: "hidden" }}>
+                                    <img src={`${Helper.host}${x.user_avatar}`} style={{ height: "100%", width: "100%", objectFit: "cover" }} />
+                                  </div>
+                                </td>
                                 <td>{x.user_first_name} {x.user_last_name}</td>
                                 <td>{Helper.renderT(x.participant_t)}</td>
                                 <td>({x.ts}/{x.tr}/{x.tp})</td>

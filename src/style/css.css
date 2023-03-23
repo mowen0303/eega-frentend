@@ -25,8 +25,16 @@
 .listCard {transition: 1s !important;}
 .listCard:hover {background: #eef5fb;}
 
-.articleWrap {font-size: 0.9em;padding:1em;}
+.articleWrap {font-size: 0.9em;}
 .articleWrap table {width: 100%; overflow: hidden; color: #6a6a6a; border-collapse: collapse;}
 .articleWrap table th,.articleWrap table td { border-collapse: collapse; text-align: left; padding:1em; border:1px solid #e4e4e4}
 .articleWrap tr:hover {background-color: #efefef; transition: 0.5s;}
 .articleWrap img {max-width: 100%;}
+.articleWrap ul,.articleWrap ol {margin:1em 0 1em 2em}
+
+.quote {font-size: 0.8em; background-color: #eaeaea; width: 100%; padding:2em; border-radius: 6px; margin-bottom: 2em; color:#666}
+
+.rankIcon {width:60px; transform:translateY(12px);}
+.rankText {padding-left: 1.4em; font-weight: bold; font-size: 1.2em;}
+
+.pre {white-space: pre-wrap;word-wrap: break-word; font-family: Roboto,Helvetica,Arial; line-height: 2.2em; font-size: 1rem;margin-top: 1em;}
