@@ -102,7 +102,7 @@ function HomePage() {
                 color="white"
                 pr={{ md: 12, lg: 24, xl: 32 }}
                 opacity={0.8}
-                style={{fontFamily:"LiSu"}}
+                class="slogon"
               >
                 以球会友 群鹰聚首
               </MKTypography>

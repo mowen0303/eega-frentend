@@ -77,7 +77,7 @@ function ScoreHistoryPage(props) {
                         <th>日期</th>
                         <th>球场</th>
                         <th>T</th>
-                        <th>(S/R/P)</th>
+                        <th>(R/S/P)</th>
                         <th>总杆</th>
                         <th>差点微分</th>
                         <th>状态</th>

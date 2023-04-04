@@ -1,3 +1,5 @@
+@font-face {font-family: 'SanJiKaiShu';src: url("SanJiKaiShu.ttf");}
+.slogon {font-family:"SanJiKaiShu","KaiTi","楷体" !important; color: #fff;}
 .table_1_wrap { width: 100%; overflow-x:auto;}
 .table_1 {width: 100%; background-color: #fafafa; border-radius: 10px; overflow: hidden; color: #6a6a6a;}
 .table_1,.table_1 th,.table_1 td {font-size: 14px; border-collapse: collapse; text-align: left; white-space: nowrap;padding:0.5em 1em}
