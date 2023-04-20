@@ -361,10 +361,10 @@ function EventDetailPage() {
                           1. 点击下方空位进行报名。
                         </MKTypography>
                         <MKTypography variant="body2" color="inherit">
-                          2. 比赛最早开放报名的日期为比赛日的前14天。
+                          2. 比赛最早开放报名的时间为：比赛日前的第14天的8:00AM。
                         </MKTypography>
                         <MKTypography variant="body2" color="inherit">
-                          3. 比赛日的前1天，名单将被锁定，届时将无法自主报名和取消报名，如果想补报或取消报名，请与赛事管理员联系。
+                          3. 在比赛日前的第2天的4:00PM，名单将被锁定，届时将无法自主报名和取消报名，如果想补报或取消报名，请与赛事管理员联系。
                         </MKTypography>
                       </MKBox>
                       
