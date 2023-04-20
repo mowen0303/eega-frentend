@@ -21,7 +21,7 @@
 .enrollBtn {width:24%; color: #fff; text-align: center; margin:0 0.2em; height: 40px; line-height: 40px; cursor: pointer; transition: 0.5s; font-size: 0.9em; background: linear-gradient(195deg, #777, #666); border-radius: 9px;}
 .occupy {background: linear-gradient(195deg, #0d8eff, #006eff); opacity: 1;}
 .enrollBtn:hover {background: linear-gradient(195deg, #0d8eff, #006eff); transition-duration: 0.5s;}
-.occupy:hover {background: linear-gradient(195deg, #EC407A, #D81B60);}
+/* .occupy:hover {background: linear-gradient(195deg, #EC407A, #D81B60);} */
 .occupy.my {background: linear-gradient(195deg, #EC407A, #D81B60);}
 
 /* #5fec40, #1bd857 */
