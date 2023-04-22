@@ -132,7 +132,7 @@ function ScoreDetailPage() {
                                 </td>
                                 <td>{x.user_first_name} {x.user_last_name}</td>
                                 <td>{Helper.renderT(x.participant_t)}</td>
-                                <td>({x.ts}/{x.tr}/{x.tp})</td>
+                                <td>({x.tr} / {x.ts} / {x.tp})</td>
                                 <td>{x.participant_score}</td>
                                 <td>{x.participant_handicap_differential}</td>
                                 <td><a className="a1" onClick={() => navigate(`/score/history/${x.participant_id}`)}>{x.participant_handicap_index}</a></td>

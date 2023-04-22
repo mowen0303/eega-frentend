@@ -92,7 +92,7 @@ function RankDetailPage(props) {
                                 <td>{x.event_date}</td>
                                 <td>{x.courseName}</td>
                                 <td>{Helper.renderT(x.participant_t)}</td>
-                                <td>({x.ts} / {x.tr} / {x.tp})</td>
+                                <td>({x.tr} / {x.ts} / {x.tp})</td>
                                 <td>{x.participant_score}</td>
                                 <td>{x.participant_handicap_differential}</td>
                                 <td>{x.rank_history_is_used_for_calculate == 1 && <div dangerouslySetInnerHTML={{ __html: `<span class="label label-green">有效</span>` }} />}</td>
